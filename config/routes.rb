@@ -1,13 +1,18 @@
 SampleApp::Application.routes.draw do
-  get "static_pages/home"
-  get "static_pages/help"
-  get "static_pages/about"
-  get "static_pages/contact"
-  # The priority is based upon order of creation: first created -> highest priority.
+
+  # path exist when they are defined with match. The get "static_pages/home" does not define paths  
+  get "users/new"
+  root 'static_pages#home' # corresponds to the localhost root! no need to specify any aditional path
+  match '/signup',  to: 'users#new',            via: 'get'
+  match '/help',    to: 'static_pages#help',    via: 'get'
+  match '/about',   to: 'static_pages#about',   via: 'get'
+  match '/contact', to: 'static_pages#contact', via: 'get'
+ 
+  # The priority is based upon order of creation: fihrst created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  # root 'welcome#idex'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
